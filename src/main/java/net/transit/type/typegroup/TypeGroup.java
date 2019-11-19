@@ -2,43 +2,43 @@ package net.transit.type.typegroup;
 
 import java.util.ArrayList;
 
-import net.transit.type.IType;
-import net.transit.type.IBaseType;
+import net.transit.type.Type;
+import net.transit.type.BaseType;
 
 public class TypeGroup<B>
 {
-    private IBaseType<B> baseType;
+    private BaseType<B> baseType;
 
     private String groupName;
 
-    private ArrayList<IType<?, B>> types;
+    private ArrayList<Type<?, B>> types;
     
     /**Create a new TypeGroup
      * 
      * @param base The base type of the group.
      * @param name The identifier of the group.  Should be in all caps.
     */
-    public TypeGroup(IBaseType<B> base, String name)
+    public TypeGroup(BaseType<B> base, String name)
     {
         baseType = base;
-        types = new ArrayList<IType<?, B>>(0);
+        types = new ArrayList<Type<?, B>>(0);
         groupName = name;
     }
 
     //  Return the base type
-    public IBaseType<B> getBaseType()
+    public BaseType<B> getBaseType()
     {
         return baseType;
     }
 
     //  Returns if the type is supported by the group
-    public boolean hasType(IType t)
+    public boolean hasType(Type<?, ?> t)
     {
 
-        for(IType gtype : types)
+        for(Type<?, B> gtype : types)
         {
             
-            if(t.getTypeName() == gtype.getTypeName()) return true;
+            if(t.TYPE_NAME == gtype.TYPE_NAME) return true;
         }
 
         return false;

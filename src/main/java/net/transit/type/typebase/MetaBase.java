@@ -1,11 +1,13 @@
 package net.transit.type.typebase;
 
-import net.transit.type.IBaseType;
+import net.transit.type.BaseType;
 
-public class MetaBase<T extends IBaseType<?>> implements IBaseType<T>
+public class MetaBase<T extends BaseType<?>> extends BaseType<T>
 {
     private T data;
     private String metaData;
+
+    public static final String TYPE_NAME = "BASE_META";
 
     public MetaBase(T dat, String meta)
     {

@@ -2,7 +2,7 @@ package net.transit.type.typegroup;
 
 import java.util.ArrayList;
 
-import net.transit.type.IType;
+import net.transit.type.Type;
 
 public final class TypeRegister
 {
@@ -11,10 +11,12 @@ public final class TypeRegister
     //  Hold all the groups
     private static ArrayList<TypeGroup<?>> groups = new ArrayList<TypeGroup<?>>(0);
 
+    private static ArrayList<Class> caster = new ArrayList<Class>(0);
+
     //  Add a group
     public static void addTypeGroup(TypeGroup<?> g)
     {
-        if(getTypeGroup(g.getGroupName()) == null) return;
+        if(getTypeGroup(g.getGroupName()) != null) return;
 
         groups.add(g);
     }
@@ -30,7 +32,7 @@ public final class TypeRegister
         return null;
     }
 
-    public static String groupOf(IType<?, ?> t)
+    public static String groupOf(Type<?, ?> t)
     {
         for(TypeGroup<?> g : groups)
         {

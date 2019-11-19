@@ -1,10 +1,12 @@
 package net.transit.type.typebase;
 
-import net.transit.type.IBaseType;
+import net.transit.type.BaseType;
 
-public class NumberBase implements IBaseType<Number>
+public class NumberBase extends BaseType<Number>
 {
     private Number data;
+
+    public static final String TYPE_NAME = "BASE_NUMBER";
 
     public NumberBase(Number dat)
     {
