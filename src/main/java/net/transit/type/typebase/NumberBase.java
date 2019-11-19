@@ -1,6 +1,6 @@
-package net.corecg.transit.type.typebase;
+package net.transit.type.typebase;
 
-import net.corecg.transit.type.IBaseType;
+import net.transit.type.IBaseType;
 
 public class NumberBase implements IBaseType<Number>
 {

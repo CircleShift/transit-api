@@ -1,6 +1,6 @@
-package net.corecg.transit.impl;
+package net.transit.impl;
 
-import net.corecg.transit.type.IType;
+import net.transit.type.IType;
 
 public interface IConsumer<T extends IType<?, ?>> extends IAcceptor<T>
 {

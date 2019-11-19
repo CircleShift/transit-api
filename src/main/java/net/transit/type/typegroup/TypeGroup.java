@@ -1,9 +1,9 @@
-package net.corecg.transit.type.typegroup;
+package net.transit.type.typegroup;
 
 import java.util.ArrayList;
 
-import net.corecg.transit.type.IType;
-import net.corecg.transit.type.IBaseType;
+import net.transit.type.IType;
+import net.transit.type.IBaseType;
 
 public class TypeGroup<B>
 {

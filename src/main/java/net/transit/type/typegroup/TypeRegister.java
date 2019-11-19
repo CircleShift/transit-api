@@ -1,8 +1,8 @@
-package net.corecg.transit.type.typegroup;
+package net.transit.type.typegroup;
 
 import java.util.ArrayList;
 
-import net.corecg.transit.type.IType;
+import net.transit.type.IType;
 
 public final class TypeRegister
 {

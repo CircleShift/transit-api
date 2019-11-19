@@ -1,4 +1,4 @@
-package net.corecg.transit.type;
+package net.transit.type;
 
 public interface IBaseType<T>
 {
