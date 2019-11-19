@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "corecg-transfer",
+  "id": "transit-api",
   "version": "${version}",
 
-  "name": "CoreCG Transfer",
+  "name": "Transit API",
   "description": "General purpose API for transfering fluid, items, energy, anything.",
   "authors": [
     "CCG Kyle"
@@ -12,7 +12,7 @@
   },
 
   "license": "MIT",
-  "icon": "assets/corecg-transfer/transit.png",
+  "icon": "assets/transit-api/transit.png",
 
   "environment": "*",
 
