@@ -1,12 +1,15 @@
-package net.transit.packet;
+package net.transit.network.packet;
 
 import java.util.ArrayList;
+
+import net.transit.type.Type;
 
 public class ArrayPacket<D> implements IPacket<D>
 {
     private ArrayList<D> arrayData;
+    private Type<D> type;
 
-    public ArrayPacket(D startValue)
+    public ArrayPacket(D startValue, Type<D> t)
     {
         arrayData = new ArrayList<D>(0);
         arrayData.add(startValue);
@@ -34,4 +37,9 @@ public class ArrayPacket<D> implements IPacket<D>
 
         return temp;
     }
+    
+    @Override
+	public Type<D> getType() {
+		return type;
+	}
 }
