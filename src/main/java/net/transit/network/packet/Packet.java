@@ -7,7 +7,7 @@ import net.transit.type.Type;
  *
  * @param <D> The data type (Object) that the packet transfers.
  */
-public interface IPacket<D>
+public interface Packet<D>
 {
 	/**Get the packet's data
 	 * 

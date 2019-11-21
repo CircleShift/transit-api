@@ -7,11 +7,11 @@ package net.transit.network.system;
  * 
  * @param T The object type stored in the system.
  */
-public interface ISystem
+public interface System
 {
 	/**The nodes stored by the system
 	 * 
 	 * @return INode[]
 	 */
-	public INode[] getNodes();
+	public Node[] getNodes();
 }

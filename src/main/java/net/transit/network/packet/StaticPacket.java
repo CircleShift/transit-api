@@ -2,7 +2,7 @@ package net.transit.network.packet;
 
 import net.transit.type.Type;
 
-public class StaticPacket<D> implements IPacket<D>
+public class StaticPacket<D> implements Packet<D>
 {
     private D data;
     private Type<D> type;

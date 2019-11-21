@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.transit.network.packet.IPacket;
+import net.transit.network.packet.Packet;
 import net.transit.type.Type;
 
 /**
@@ -14,12 +14,97 @@ import net.transit.type.Type;
  */
 public class TypeGroup<B>
 {
-	/** The list of types. */
-	private final ArrayList<Type<?>> TYPES = new ArrayList<Type<?>>(0);
-	private final ArrayList<String> TYPEIDS = new ArrayList<String>(0);
+	// The base Type (provides the group's identifier)
+	private Type<B> baseType;
 	
-	/** Logger for events in the group.  Should not be overridden.*/
+	// The list of types.
+	private final ArrayList<Type<?>> TYPES = new ArrayList<Type<?>>(0);
+	
+	// Logger for events in the TypeGroup.
 	private static final Logger LOG = LogManager.getFormatterLogger("Transit|Group");
+	private static final String prefix = "[" + LOG.getName() + "] ";
+	
+	
+	public TypeGroup(Type<B> base)
+	{
+		baseType = base;
+		addType(base);
+	}
+	
+	
+	// Type management
+	
+	/** Add a Type to the TypeGroup.
+	 *  The Type must have a group-type combo not already found in this TypeGroup.
+	 *  Returns {@code true} if the group was added.
+	 *  
+	 * @param type The Type to add
+	 * @return
+	 */
+	public boolean addType(Type<B> type)
+	{
+		if(!isInGroup(type.getGroup(), type.getType()) && !isInGroup(type))
+		{
+			TYPES.add(type);
+			LOG.info(prefix + "Added type " + type.getType() + " to group " + getGroup());
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/** Remove a Type from the TypeGroup.
+	 * 
+	 * @param type The Type to remove
+	 * @return
+	 */
+	public boolean removeType(Type<B> type)
+	{
+		
+		if(isInGroup(type) && TYPES.indexOf(type) != -1)
+		{
+			LOG.info(prefix + "Removed type " + TYPES.remove(TYPES.indexOf(type)).getType() + " from group " + getGroup());
+			return true;
+		}
+		
+		LOG.warn(prefix + "[WARN] Failed to remove type " + type.getGroup() + ":" + type.getType() + " from group " + getGroup() + ".  Are we sure that the type was added to the group first?");
+		return false;
+	}
+	
+	/** Remove a type from the group based on it's group-type identifier.
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public boolean removeType(String groupID, String typeID)
+	{
+		
+		for(Type<?> type : TYPES)
+		{
+			if(type.getGroup().equals(groupID) && type.getType().equals(typeID))
+			{
+				LOG.info(prefix + "Removed type " + TYPES.remove(TYPES.indexOf(type)).getType() + " from group " + getGroup());
+				return true;
+			}
+		}
+		
+		LOG.warn(prefix + "[WARN] Failed to remove type " + groupID + ":" + typeID + " from group " + getGroup() + ".  Are we sure that the type was added to the group first?");
+		return false;
+	}
+	
+	/** Remove a type from the group based on it's group-type identifier.
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public boolean removeType(String typeID)
+	{
+		
+		return removeType(getGroup(), typeID);
+	}
+	
+	
+	// Check if a type is in the group
 	
 	/**Check if the type is in the group
 	 * 
@@ -28,110 +113,114 @@ public class TypeGroup<B>
 	 */
 	public boolean isInGroup(Type<B> type)
 	{
-		return TYPES.contains(type);
+		for(Type<?> t : TYPES)
+		{
+			if(t.equals(type)) return true;
+		}
+		return false;
 	}
 	
 	/**Check if the type is in the group
 	 * 
-	 * @param type
+	 * @param groupID
+	 * @param typeID
 	 * @return boolean
 	 */
-	public boolean isInGroup(String type)
+	public boolean isInGroup(String groupID, String typeID)
 	{
-		return TYPEIDS.contains(type);
+		for(Type<?> t : TYPES)
+		{
+			if(t.getGroup().equals(groupID) && t.getType().equals(typeID)) return true;
+		}
+		return false;
 	}
+	
+	/**Check if the type is in the group
+	 * 
+	 * @param typeID
+	 * @return boolean
+	 */
+	public boolean isInGroup(String typeID)
+	{
+		return isInGroup(getGroup(), typeID);
+	}
+	
+	// Get a type in the group
 	
 	/**Get the type from the group
 	 * 
 	 * @param type
-	 * @return IType<<B>>
+	 * @return Type
 	 */
-	public Type<B> getType(String type)
+	@SuppressWarnings("unchecked")
+	public Type<B> getType(String groupID, String typeID)
 	{
-		if(isInGroup(type))
+		for(Type<?> t : TYPES)
 		{
-			return (Type<B>) TYPES.get(TYPEIDS.indexOf(type));
+			if(t.getGroup().equals(groupID) && t.getType().equals(typeID)) return (Type<B>) t;
 		}
 		
 		return null;
 	}
 	
+	public Type<B> getType(String typeID)
+	{
+		return getType(getGroup(), typeID);
+	}
+	
+	
 	//  Type conversion
+	
+	/** Actually convert the packet
+	 * 
+	 * @param packet
+	 * @param type
+	 * @return
+	 */
+	protected Packet<B> convertPacketRaw(Packet<B> packet, Type<B> type)
+	{
+		return type.fromBase(packet.getType().toBase(packet, getGroup()), getGroup());
+	}
+	
 	/**Convert a packet to a new type
 	 * 
 	 * @param packet The packet to convert
 	 * @param type The type to convert to
-	 * @return IPacket<<B>>
+	 * @return Packet
 	 */
-	public IPacket<B> convertPacket(IPacket<B> packet, Type<B> type)
+	public Packet<B> convertPacket(Packet<B> packet, Type<B> type)
 	{
 		if(isInGroup(packet.getType()) && isInGroup(type))
 		{
-			return type.fromBase(packet.getType().toBase(packet));
+			return convertPacketRaw(packet, type);
 		}
 		
 		return null;
 	}
 	
-	public IPacket<B> convertPacket(IPacket<B> packet, String type)
+	/**Convert a packet to a new type
+	 * 
+	 * @param packet The packet to convert
+	 * @param groupID The groupID of the Type to convert to
+	 * @param typeID The typeID of the Type to convert to
+	 * @return Packet
+	 */
+	public Packet<B> convertPacket(Packet<B> packet, String groupID, String typeID)
 	{
-		if(isInGroup(packet.getType()) && isInGroup(type))
+		Type<B> toType = getType(groupID, typeID);
+		if(toType != null)
 		{
-			return getType(type).fromBase(packet.getType().toBase(packet));
+			return convertPacketRaw(packet, toType);
 		}
 		
 		return null;
 	}
 	
-	//  Type management
-	
-	public boolean addType(Type<B> type, String typeID)
-	{
-		if(!isInGroup(type.getType()) && !isInGroup(typeID))
-		{
-			TYPES.add(type);
-			TYPEIDS.add(typeID);
-			LOG.info("Added type " + typeID + " to group " + this.getGroup());
-			return true;
-		}
-		
-		return false;
-	}
-	
-	
-	public boolean removeType(Type<B> type)
-	{
-		
-		if(isInGroup(type) && TYPES.indexOf(type) != -1)
-		{
-			String id = TYPEIDS.remove(TYPES.indexOf(type));
-			TYPES.remove(type);
-			LOG.info("Removed type " + id + " from group " + this.getGroup());
-			return true;
-		}
-		LOG.warn("Failed to remove type " + type.getType() + " from group " + this.getGroup() + ".  Are we sure that the type was added to the group first?");
-		return false;
-	}
-	
-	public boolean removeType(String typeID)
-	{
-		if(isInGroup(typeID) && TYPEIDS.indexOf(typeID) != -1)
-		{
-			TYPES.remove(TYPEIDS.indexOf(typeID));
-			TYPEIDS.remove(typeID);
-			LOG.info("Removed type " + typeID + " from group " + this.getGroup());
-			return true;
-		}
-		
-		LOG.warn("Failed to remove type " + typeID + " from group " + this.getGroup() + ".  Are we sure that the type was added to the group first?");
-		return false;
-	}
-	
-	/** The group identifier.  Must be overridden for any class implementing ITypeGroup
+	/** The group identifier.  Given by the Base Group
 	 * @return String
 	 */
-	public String getGroup()
+	public final String getGroup()
 	{
-		return "ITYPEGROUP";
+		return baseType.getGroup();
 	}
 }

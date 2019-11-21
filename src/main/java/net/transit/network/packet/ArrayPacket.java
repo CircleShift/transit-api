@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import net.transit.type.Type;
 
-public class ArrayPacket<D> implements IPacket<D>
+public class ArrayPacket<D> implements Packet<D>
 {
     private ArrayList<D> arrayData;
     private Type<D> type;
@@ -13,8 +13,10 @@ public class ArrayPacket<D> implements IPacket<D>
     {
         arrayData = new ArrayList<D>(0);
         arrayData.add(startValue);
+        type = t;
     }
-
+    
+    @Override
     public D getData()
     {
         if(arrayData.size() > 0) return arrayData.get(0);
@@ -24,6 +26,11 @@ public class ArrayPacket<D> implements IPacket<D>
     public void addData(D data)
     {
         arrayData.add(data);
+    }
+    
+    public int dataStored()
+    {
+    	return arrayData.size();
     }
 
     public D popAndShift()

@@ -5,47 +5,46 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public abstract class GroupRegistry {
+import net.transit.type.Type;
+
+public class GroupRegistry {
 	private static final ArrayList<TypeGroup<?>> GROUPS = new ArrayList<TypeGroup<?>>(0);
-	private static final ArrayList<String> GROUPIDS = new ArrayList<String>(0);
 	
 	private static final Logger LOG = LogManager.getFormatterLogger("Transit|GroupRegistry");
+	private static final String prefix = "[" + LOG.getName() + "] ";
 	
-	public static final boolean addGroup(TypeGroup<?> group, String groupID)
+	private GroupRegistry() {}
+	
+	public static final boolean addGroup(TypeGroup<?> group)
 	{
-		for(String s : GROUPIDS)
-		{
-			if(s.equals(groupID))
-			{
-				LOG.warn("Failed to add group " + group.getGroup() + " to the registry. Did another mod add a group with the same name?");
-				return false;
-			}
-		}
-		
 		for(TypeGroup<?> g : GROUPS)
 		{
-			if(g.equals(group))
+			if(g.getGroup().equals(group.getGroup()))
 			{
-				LOG.warn("Failed to add group " + group.getGroup() + " to the registry. Was the group alreay added?");
+				LOG.warn(prefix + "Failed to add group " + group.getGroup() + " to the registry. Did another mod add a group with the same name?");
 				return false;
 			}
 		}
 		
 		GROUPS.add(group);
-		GROUPIDS.add(groupID);
-		LOG.info("Successfully added group " + group.getGroup() + " to the registry.");
+		LOG.info(prefix + "Successfully added group " + group.getGroup() + " to the registry.");
 		return true;
 	}
 	
 	public static final TypeGroup<?> groupByID(String groupID)
 	{
-		for(String s : GROUPIDS)
+		for(TypeGroup<?> g : GROUPS)
 		{
-			if(s.equals(groupID)) return GROUPS.get(GROUPIDS.indexOf(s));
+			if(g.getGroup().equals(groupID)) return g;
 		}
 		
 		return null;
 		
+	}
+	
+	public static final Type<?> typeByIdentity(String groupID, String typeID)
+	{
+		return groupByID(groupID).getType(typeID);
 	}
 	
 }

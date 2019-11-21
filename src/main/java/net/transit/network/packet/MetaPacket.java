@@ -2,7 +2,7 @@ package net.transit.network.packet;
 
 import net.transit.type.Type;
 
-public class MetaPacket<D, M> implements IPacket<D>
+public class MetaPacket<D, M> implements Packet<D>
 {
 	
 	private D data;
