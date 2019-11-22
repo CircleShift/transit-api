@@ -10,9 +10,17 @@ public interface AcceptorNode extends Node
 	 * 
 	 * @param requester The object to be a provider
 	 * @param group
-	 * @return Provider
+	 * @return
 	 */
 	public boolean linkProvider(Node requestor, String group);
+	
+	
+	/** Unlink a provider from the acceptor
+	 * 
+	 * @param toUnlink
+	 * @return
+	 */
+	public boolean unlinkProvider(Node toUnlink);
 	
 	
 	/**

@@ -12,6 +12,15 @@ public interface ProviderNode extends Node{
 	 */
 	public boolean linkAcceptor(Node requester, String group);
 	
+	
+	/** Unlink a provider from the acceptor
+	 * 
+	 * @param toUnlink
+	 * @return
+	 */
+	public boolean unlinkAcceptor(Node toUnlink);
+	
+	
 	/**
 	 * @return Node[]
 	 */

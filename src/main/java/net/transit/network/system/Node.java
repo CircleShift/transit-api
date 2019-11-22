@@ -27,4 +27,10 @@ public interface Node
 	 * @return
 	 */
 	public Object getData(String groupID);
+	
+	/** Get the nodes that this node is connected to
+	 * 
+	 * @return Node[]
+	 */
+	public Node[] getConnections();
 }
