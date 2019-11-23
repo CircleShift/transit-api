@@ -12,7 +12,7 @@ public interface AcceptorNode extends Node
 	 * @param group
 	 * @return
 	 */
-	public boolean linkProvider(Node requestor, String group);
+	public boolean linkProvider(Node requester, String group);
 	
 	
 	/** Unlink a provider from the acceptor

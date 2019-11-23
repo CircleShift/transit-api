@@ -28,6 +28,15 @@ public interface Node
 	 */
 	public Object getData(String groupID);
 	
+	
+	/** Set the group data for the node
+	 * 
+	 * @param dat
+	 * @param groupID
+	 */
+	public void setData(Object dat, String groupID);
+	
+	
 	/** Get the nodes that this node is connected to
 	 * 
 	 * @return Node[]

@@ -6,7 +6,7 @@ import net.transit.type.group.GroupRegistry;
 import net.transit.type.group.TypeGroup;
 import net.transit.type.simple.SimpleTypes;
 
-public final class InitSimpleGroups {
+public final class SimpleGroups {
 	public static final TypeGroup<Number> ENERGY_GROUP = new TypeGroup<Number>(SimpleTypes.ENERGY);
 	public static final TypeGroup<Number> MANA_GROUP = new TypeGroup<Number>(SimpleTypes.MANA);
 	public static final TypeGroup<Item> ITEM_GROUP = new TypeGroup<Item>(SimpleTypes.ITEM);
