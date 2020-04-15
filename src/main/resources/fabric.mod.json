@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "transit-api",
-  "version": "0.5.1",
+  "version": "0.6.2",
 
   "name": "Transit API",
   "description": "General purpose API for transfering fluid, items, energy, anything.",

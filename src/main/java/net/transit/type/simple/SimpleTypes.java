@@ -1,12 +1,22 @@
 package net.transit.type.simple;
 
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.Item;
-import net.transit.type.Type;
+import net.minecraft.item.ItemStack;
+import net.transit.type.*;
 
 public final class SimpleTypes {
+	/** Transfers energy.  Energy is stored as a numeric, base value is TJoule (TransitJoule)
+	 */
 	public static final Type<Number> TransitJoule = new Type<Number>("TJoule", "ENERGY");
-	public static final Type<Number> TransitMana = new Type<Number>("TMana", "MANA");
-	public static final Type<Item> Item = new Type<Item>("Item", "ITEM");
-	public static final Type<Fluid> Fluid = new Type<Fluid>("Fluid", "FLUID");
+	
+	/** Transfers mana.  TMana stores mana count and type.
+	 */
+	public static final Type<TMana> TransitMana = new Type<TMana>("TMana", "MANA");
+
+	/** Transfers items in a itemstack.
+	 */
+	public static final Type<ItemStack> Item = new Type<ItemStack>("Item", "ITEM");
+
+	/** Transfers fluid. TFluid stores fluid and mB.
+	 */
+	public static final Type<TFluid> Fluid = new Type<TFluid>("Fluid", "FLUID");
 }
