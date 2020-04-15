@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.transit.network.packet.Packet;
+import net.transit.network.packet.*;
 import net.transit.type.Type;
 
 /**
@@ -18,7 +18,7 @@ public class TypeGroup<B>
 	private Type<B> baseType;
 	
 	// The list of types.
-	private final ArrayList<Type<?>> TYPES = new ArrayList<Type<?>>(0);
+	private final ArrayList<Type<B>> TYPES = new ArrayList<Type<B>>(0);
 	
 	// Logger for events in the TypeGroup.
 	private static final Logger LOG = LogManager.getFormatterLogger("Transit|Group");
@@ -43,13 +43,14 @@ public class TypeGroup<B>
 	 */
 	public boolean addType(Type<B> type)
 	{
-		if(!isInGroup(type.getGroup(), type.getType()) && !isInGroup(type))
+		if(!isInGroup(type.getGroup(), type.getType()))
 		{
 			TYPES.add(type);
-			LOG.info(prefix + "Added type " + type.getType() + " to group " + getGroup());
+			LOG.info(prefix + "Added type " + type.getType() + ":" + type.getGroup() + " to group " + getGroup());
 			return true;
 		}
-		
+
+		LOG.info(prefix + "Failed to add type " + type.getType() + ":" + type.getGroup() + " to group " + getGroup() + ".  Was the type already added?");
 		return false;
 	}
 	
@@ -60,8 +61,12 @@ public class TypeGroup<B>
 	 */
 	public boolean removeType(Type<B> type)
 	{
+		if(type.equals(baseType)) {
+			LOG.warn(prefix + "[WARN] Failed to remove type " + type.getGroup() + ":" + type.getType() + " from group " + getGroup() + ".  This is the base type and can not be removed.");
+			return false;
+		}
 		
-		if(isInGroup(type) && TYPES.indexOf(type) != -1)
+		if(TYPES.indexOf(type) != -1)
 		{
 			LOG.info(prefix + "Removed type " + TYPES.remove(TYPES.indexOf(type)).getType() + " from group " + getGroup());
 			return true;
@@ -113,7 +118,7 @@ public class TypeGroup<B>
 	 */
 	public boolean isInGroup(Type<B> type)
 	{
-		for(Type<?> t : TYPES)
+		for(Type<B> t : TYPES)
 		{
 			if(t.equals(type)) return true;
 		}
@@ -128,7 +133,7 @@ public class TypeGroup<B>
 	 */
 	public boolean isInGroup(String groupID, String typeID)
 	{
-		for(Type<?> t : TYPES)
+		for(Type<B> t : TYPES)
 		{
 			if(t.getGroup().equals(groupID) && t.getType().equals(typeID)) return true;
 		}
@@ -152,12 +157,11 @@ public class TypeGroup<B>
 	 * @param type
 	 * @return Type
 	 */
-	@SuppressWarnings("unchecked")
 	public Type<B> getType(String groupID, String typeID)
 	{
-		for(Type<?> t : TYPES)
+		for(Type<B> t : TYPES)
 		{
-			if(t.getGroup().equals(groupID) && t.getType().equals(typeID)) return (Type<B>) t;
+			if(t.getGroup().equals(groupID) && t.getType().equals(typeID)) return t;
 		}
 		
 		return null;
@@ -177,7 +181,7 @@ public class TypeGroup<B>
 	 * @param type
 	 * @return
 	 */
-	protected Packet<B> convertPacketRaw(Packet<B> packet, Type<B> type)
+	protected IStaticPacket<B> convertPacketRaw(IStaticPacket<B> packet, Type<B> type)
 	{
 		return type.fromBase(packet.getType().toBase(packet, getGroup()), getGroup());
 	}
@@ -188,7 +192,7 @@ public class TypeGroup<B>
 	 * @param type The type to convert to
 	 * @return Packet
 	 */
-	public Packet<B> convertPacket(Packet<B> packet, Type<B> type)
+	public IStaticPacket<B> convertPacket(IStaticPacket<B> packet, Type<B> type)
 	{
 		if(isInGroup(packet.getType()) && isInGroup(type))
 		{
@@ -205,7 +209,7 @@ public class TypeGroup<B>
 	 * @param typeID The typeID of the Type to convert to
 	 * @return Packet
 	 */
-	public Packet<B> convertPacket(Packet<B> packet, String groupID, String typeID)
+	public IStaticPacket<B> convertPacket(IStaticPacket<B> packet, String groupID, String typeID)
 	{
 		Type<B> toType = getType(groupID, typeID);
 		if(toType != null)

@@ -1,14 +1,15 @@
-package net.transit.network.packet;
+package net.transit.network.packet.dynamic;
 
 import net.transit.type.Type;
 
-/** Simple packet which stores an unchanging value.
+/**
+ * Simple packet which stores a fluid value.
+ * 
  * @author Kyle Gunger
  *
- * @param <D> The data type (Object) that the packet transfers.
+ * @param <D> The data type (Object) that the packet transfers
  */
-public class StaticPacket<D> implements IStaticPacket<D>
-{
+public class DynamicPacket<D> implements IDynamicPacket<D> {
     private D data;
     private Type<D> type;
 
@@ -17,7 +18,7 @@ public class StaticPacket<D> implements IStaticPacket<D>
      * @param dat The packet's data
      * @param t The packet's type
      */
-    public StaticPacket(D dat, Type<D> t)
+    public DynamicPacket(D dat, Type<D> t)
     {
         data = dat;
         type = t;
@@ -27,6 +28,12 @@ public class StaticPacket<D> implements IStaticPacket<D>
     public D getData()
     {
         return data;
+    }
+
+    @Override
+    public void setData(D dat)
+    {
+        data = dat;
     }
 
 	@Override

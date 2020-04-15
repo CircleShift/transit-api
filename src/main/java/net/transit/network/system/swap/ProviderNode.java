@@ -1,8 +1,8 @@
 package net.transit.network.system.swap;
 
-import net.transit.network.system.Node;
+import net.transit.network.system.INode;
 
-public interface ProviderNode extends Node{
+public interface ProviderNode extends INode{
 	
 	/** Link another node as an acceptor
 	 * 
@@ -10,7 +10,7 @@ public interface ProviderNode extends Node{
 	 * @param group
 	 * @return boolean
 	 */
-	public boolean linkAcceptor(Node requester, String group);
+	public boolean linkAcceptor(INode requester, String group);
 	
 	
 	/** Unlink a provider from the acceptor
@@ -18,12 +18,12 @@ public interface ProviderNode extends Node{
 	 * @param toUnlink
 	 * @return
 	 */
-	public boolean unlinkAcceptor(Node toUnlink);
+	public boolean unlinkAcceptor(INode toUnlink);
 	
 	
 	/**
 	 * @return Node[]
 	 */
-	public Node[] getAcceptors();
+	public INode[] getAcceptors();
 	
 }

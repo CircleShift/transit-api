@@ -1,6 +1,6 @@
 package net.transit.type;
 
-import net.transit.network.packet.Packet;
+import net.transit.network.packet.IStaticPacket;
 import net.transit.network.packet.StaticPacket;
 
 /**@author Kyle Gunger
@@ -24,7 +24,7 @@ public class Type<T>
 	 * @param group The group asking for the conversion
 	 * @return <T> The packet's data in the default type
 	 */
-	public T toBase(Packet<T> packet, String group)
+	public T toBase(IStaticPacket<T> packet, String group)
 	{
 		return packet.getData();
 	}
@@ -35,7 +35,7 @@ public class Type<T>
 	 * @param group The group that the data comes from
 	 * @return IPacket<<T>> The packet
 	 */
-	public Packet<T> fromBase(T base, String group)
+	public IStaticPacket<T> fromBase(T base, String group)
 	{
 		return new StaticPacket<T>(base, this);
 	}
