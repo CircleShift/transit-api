@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "transit-api",
-  "version": "0.7.1",
+  "version": "0.8.1",
 
   "name": "Transit API",
   "description": "Move about!",
@@ -14,12 +14,12 @@
   },
 
   "license": "MIT",
-  "icon": "assets/transit-api/transit.png",
+  "icon": "assets/transit-api/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.transit.InitTransit"
+      "net.corechg.transit.InitTransit"
     ]
   },
 
