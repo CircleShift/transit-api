@@ -22,7 +22,6 @@ public class TypeGroup<B>
 	
 	// Logger for events in the TypeGroup.
 	private static final Logger LOG = LogManager.getFormatterLogger("Transit|Group");
-	private static final String prefix = "[" + LOG.getName() + "] ";
 	
 	
 	public TypeGroup(Type<B> base)
@@ -46,11 +45,11 @@ public class TypeGroup<B>
 		if(!isInGroup(type.getGroup(), type.getType()))
 		{
 			TYPES.add(type);
-			LOG.info(prefix + "Added type " + type.getType() + ":" + type.getGroup() + " to group " + getGroup());
+			LOG.info("Added type " + type.getType() + ":" + type.getGroup() + " to group " + getGroup());
 			return true;
 		}
 
-		LOG.info(prefix + "Failed to add type " + type.getType() + ":" + type.getGroup() + " to group " + getGroup() + ".  Was the type already added?");
+		LOG.info("Failed to add type " + type.getType() + ":" + type.getGroup() + " to group " + getGroup() + ".  Was the type already added?");
 		return false;
 	}
 	
@@ -62,17 +61,17 @@ public class TypeGroup<B>
 	public boolean removeType(Type<B> type)
 	{
 		if(type.equals(baseType)) {
-			LOG.warn(prefix + "[WARN] Failed to remove type " + type.getGroup() + ":" + type.getType() + " from group " + getGroup() + ".  This is the base type and can not be removed.");
+			LOG.warn("[WARN] Failed to remove type " + type.getGroup() + ":" + type.getType() + " from group " + getGroup() + ".  This is the base type and can not be removed.");
 			return false;
 		}
 		
 		if(TYPES.indexOf(type) != -1)
 		{
-			LOG.info(prefix + "Removed type " + TYPES.remove(TYPES.indexOf(type)).getType() + " from group " + getGroup());
+			LOG.info("Removed type " + TYPES.remove(TYPES.indexOf(type)).getType() + " from group " + getGroup());
 			return true;
 		}
 		
-		LOG.warn(prefix + "[WARN] Failed to remove type " + type.getGroup() + ":" + type.getType() + " from group " + getGroup() + ".  Are we sure that the type was added to the group first?");
+		LOG.warn("[WARN] Failed to remove type " + type.getGroup() + ":" + type.getType() + " from group " + getGroup() + ".  Are we sure that the type was added to the group first?");
 		return false;
 	}
 	
@@ -88,12 +87,12 @@ public class TypeGroup<B>
 		{
 			if(type.getGroup().equals(groupID) && type.getType().equals(typeID))
 			{
-				LOG.info(prefix + "Removed type " + TYPES.remove(TYPES.indexOf(type)).getType() + " from group " + getGroup());
+				LOG.info("Removed type " + TYPES.remove(TYPES.indexOf(type)).getType() + " from group " + getGroup());
 				return true;
 			}
 		}
 		
-		LOG.warn(prefix + "[WARN] Failed to remove type " + groupID + ":" + typeID + " from group " + getGroup() + ".  Are we sure that the type was added to the group first?");
+		LOG.warn("[WARN] Failed to remove type " + groupID + ":" + typeID + " from group " + getGroup() + ".  Are we sure that the type was added to the group first?");
 		return false;
 	}
 	

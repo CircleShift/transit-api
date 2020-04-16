@@ -11,7 +11,6 @@ public class GroupRegistry {
 	private static final ArrayList<TypeGroup<?>> GROUPS = new ArrayList<TypeGroup<?>>(0);
 	
 	private static final Logger LOG = LogManager.getFormatterLogger("Transit|GroupRegistry");
-	private static final String prefix = "[" + LOG.getName() + "] ";
 	
 	private GroupRegistry() {}
 	
@@ -21,13 +20,13 @@ public class GroupRegistry {
 		{
 			if(g.getGroup().equals(group.getGroup()))
 			{
-				LOG.warn(prefix + "Failed to add group " + group.getGroup() + " to the registry. Did another mod add a group with the same name?");
+				LOG.warn("Failed to add group " + group.getGroup() + " to the registry. Did another mod add a group with the same name?");
 				return false;
 			}
 		}
 		
 		GROUPS.add(group);
-		LOG.info(prefix + "Successfully added group " + group.getGroup() + " to the registry.");
+		LOG.info("Successfully added group " + group.getGroup() + " to the registry.");
 		return true;
 	}
 	
