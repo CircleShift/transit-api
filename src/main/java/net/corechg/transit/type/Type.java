@@ -19,6 +19,7 @@ public class Type<T>
 	}
 	
 	/** Return the packet's data formatted in the group's base type.
+	 *  If creating a new type, extend this class and override this function.
 	 * 
 	 * @param packet The packet (of this type)
 	 * @param group The group asking for the conversion
@@ -30,6 +31,7 @@ public class Type<T>
 	}
 	
 	/** Create a packet which has the current type from the data in the base type.
+	 *  If creating a new type, extend this class and override this function.
 	 * 
 	 * @param base The base data
 	 * @param group The group that the data comes from
@@ -40,7 +42,7 @@ public class Type<T>
 		return new StaticPacket<T>(base, this);
 	}
 	
-	/** The type identifier.  Must be overridden for any class implementing IType.
+	/** The type identifier.  Gives the normal type identity of the type.
 	 * 
 	 * @return String
 	 */

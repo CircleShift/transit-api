@@ -103,7 +103,6 @@ public class TypeGroup<B>
 	 */
 	public boolean removeType(String typeID)
 	{
-		
 		return removeType(getGroup(), typeID);
 	}
 	
@@ -153,7 +152,8 @@ public class TypeGroup<B>
 	
 	/**Get the type from the group
 	 * 
-	 * @param type
+	 * @param groupID The ID of the group the type is originally from
+	 * @param typeID The ID of the type
 	 * @return Type
 	 */
 	public Type<B> getType(String groupID, String typeID)
@@ -166,6 +166,11 @@ public class TypeGroup<B>
 		return null;
 	}
 	
+	/**Get the type from the group
+	 * 
+	 * @param typeID The ID of the type
+	 * @return Type
+	 */
 	public Type<B> getType(String typeID)
 	{
 		return getType(getGroup(), typeID);
@@ -218,6 +223,23 @@ public class TypeGroup<B>
 		
 		return null;
 	}
+
+	/**Convert a packet to a new type
+	 * 
+	 * @param packet The packet to convert
+	 * @param typeID The typeID of the Type to convert to
+	 * @return Packet
+	 */
+	public IStaticPacket<B> convertPacket(IStaticPacket<B> packet, String typeID)
+	{
+		Type<B> toType = getType(typeID);
+		if(toType != null)
+		{
+			return convertPacketRaw(packet, toType);
+		}
+		
+		return null;
+	}
 	
 	/** The group identifier.  Given by the Base Group
 	 * @return String
@@ -225,5 +247,12 @@ public class TypeGroup<B>
 	public final String getGroup()
 	{
 		return baseType.getGroup();
+	}
+
+	/** The base group type
+	 * 	@return Type
+	 */
+	public final Type<B> getBase() {
+		return baseType;
 	}
 }

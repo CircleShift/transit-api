@@ -3,7 +3,7 @@ package net.corechg.transit.network.system.swap;
 import net.corechg.transit.network.packet.IStaticPacket;
 import net.corechg.transit.network.system.INode;
 
-public interface AcceptorNode extends INode
+public interface IAcceptorNode extends INode
 {
 	
 	/** Link another node as a provider
@@ -35,5 +35,5 @@ public interface AcceptorNode extends INode
 	 * @param group
 	 * @return
 	 */
-	public boolean accept(IStaticPacket<?> packet, String group);
+	public <T> boolean accept(IStaticPacket<T> packet, String group);
 }

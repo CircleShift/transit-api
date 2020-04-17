@@ -2,7 +2,7 @@ package net.corechg.transit.network.system.swap;
 
 import net.corechg.transit.network.system.INode;
 
-public interface ProviderNode extends INode{
+public interface IProviderNode extends INode{
 	
 	/** Link another node as an acceptor
 	 * 
