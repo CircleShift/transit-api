@@ -18,7 +18,7 @@ public interface INode
 	 * 
 	 * @return System
 	 */
-	public System getSystem();
+	public ISystem getSystem();
 	
 	
 	/** Get the data of one of the TypeGroups the Node supports
