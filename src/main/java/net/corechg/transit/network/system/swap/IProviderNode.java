@@ -2,6 +2,10 @@ package net.corechg.transit.network.system.swap;
 
 import net.corechg.transit.network.system.INode;
 
+/**
+ * @author Kyle Gunger
+ * @apiNote A node which can provide packets of specific types
+ */
 public interface IProviderNode extends INode{
 	
 	/** Link another node as an acceptor
@@ -24,6 +28,6 @@ public interface IProviderNode extends INode{
 	/**
 	 * @return Node[]
 	 */
-	public INode[] getAcceptors();
+	public IAcceptorNode[] getAcceptors();
 	
 }

@@ -1,11 +1,9 @@
 package net.corechg.transit.network.system;
 
 
-/**ISystem - a group of nodes optimized for performance
- * 
- * A node can exist without a system, but a system can not exist without at least one root node.
- * 
- * @param T The object type stored in the system.
+/**
+ * @author Kyle Gunger
+ * @apiNote An ISystem represents a system of nodes which has been optimized for performance.  A node can exist on its own, but an ISystem can't exist without a node.
  */
 public interface ISystem
 {

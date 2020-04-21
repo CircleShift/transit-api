@@ -20,13 +20,13 @@ public class GroupRegistry {
 		{
 			if(g.getGroup().equals(group.getGroup()))
 			{
-				LOG.warn("Failed to add group " + group.getGroup() + " to the registry. Did another mod add a group with the same name?");
+				LOG.warn("Failed to add group " + group + " to the registry. Did another mod add a group with the same name?");
 				return false;
 			}
 		}
 		
 		GROUPS.add(group);
-		LOG.info("Successfully added group " + group.getGroup() + " to the registry.");
+		LOG.info("Successfully added group " + group + " to the registry.");
 		return true;
 	}
 	

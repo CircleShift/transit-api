@@ -42,14 +42,14 @@ public class TypeGroup<B>
 	 */
 	public boolean addType(Type<B> type)
 	{
-		if(!isInGroup(type.getGroup(), type.getType()))
+		if(!isInGroup(type))
 		{
 			TYPES.add(type);
-			LOG.info("Added type " + type.getType() + ":" + type.getGroup() + " to group " + getGroup());
+			LOG.info("Added type " + type + " to group " + getGroup());
 			return true;
 		}
 
-		LOG.info("Failed to add type " + type.getType() + ":" + type.getGroup() + " to group " + getGroup() + ".  Was the type already added?");
+		LOG.info("Failed to add type " + type + " to group " + getGroup() + ".  Was the type already added?");
 		return false;
 	}
 	
@@ -61,17 +61,17 @@ public class TypeGroup<B>
 	public boolean removeType(Type<B> type)
 	{
 		if(type.equals(baseType)) {
-			LOG.warn("[WARN] Failed to remove type " + type.getGroup() + ":" + type.getType() + " from group " + getGroup() + ".  This is the base type and can not be removed.");
+			LOG.warn("[WARN] Failed to remove type " + type + " from group " + getGroup() + ".  This is the base type and can not be removed.");
 			return false;
 		}
 		
 		if(TYPES.indexOf(type) != -1)
 		{
-			LOG.info("Removed type " + TYPES.remove(TYPES.indexOf(type)).getType() + " from group " + getGroup());
+			LOG.info("Removed type " + TYPES.remove(TYPES.indexOf(type)) + " from group " + getGroup());
 			return true;
 		}
 		
-		LOG.warn("[WARN] Failed to remove type " + type.getGroup() + ":" + type.getType() + " from group " + getGroup() + ".  Are we sure that the type was added to the group first?");
+		LOG.warn("[WARN] Failed to remove type " + type + " from group " + getGroup() + ".  Are we sure that the type was added to the group first?");
 		return false;
 	}
 	
@@ -82,12 +82,16 @@ public class TypeGroup<B>
 	 */
 	public boolean removeType(String groupID, String typeID)
 	{
-		
+		if(baseType.toString() == groupID + ":" + typeID) {
+			LOG.warn("[WARN] Failed to remove type " + baseType + " from group " + getGroup() + ".  This is the base type and can not be removed.");
+			return false;
+		}
+
 		for(Type<?> type : TYPES)
 		{
-			if(type.getGroup().equals(groupID) && type.getType().equals(typeID))
+			if(type.toString() == groupID + ":" + typeID)
 			{
-				LOG.info("Removed type " + TYPES.remove(TYPES.indexOf(type)).getType() + " from group " + getGroup());
+				LOG.info("Removed type " + TYPES.remove(TYPES.indexOf(type)) + " from group " + getGroup());
 				return true;
 			}
 		}
@@ -133,7 +137,7 @@ public class TypeGroup<B>
 	{
 		for(Type<B> t : TYPES)
 		{
-			if(t.getGroup().equals(groupID) && t.getType().equals(typeID)) return true;
+			if(t.toString() == groupID + ":" + typeID) return true;
 		}
 		return false;
 	}
@@ -160,7 +164,7 @@ public class TypeGroup<B>
 	{
 		for(Type<B> t : TYPES)
 		{
-			if(t.getGroup().equals(groupID) && t.getType().equals(typeID)) return t;
+			if(t.toString() == groupID + ":" + typeID) return t;
 		}
 		
 		return null;
@@ -190,7 +194,7 @@ public class TypeGroup<B>
 		return type.fromBase(packet.getType().toBase(packet, getGroup()), getGroup());
 	}
 	
-	/**Convert a packet to a new type
+	/**Convert a packet to a new type  Returns null if the type isn't in the group.
 	 * 
 	 * @param packet The packet to convert
 	 * @param type The type to convert to
@@ -206,7 +210,7 @@ public class TypeGroup<B>
 		return null;
 	}
 	
-	/**Convert a packet to a new type
+	/**Convert a packet to a new type  Returns null if the type isn't found.
 	 * 
 	 * @param packet The packet to convert
 	 * @param groupID The groupID of the Type to convert to
@@ -224,7 +228,7 @@ public class TypeGroup<B>
 		return null;
 	}
 
-	/**Convert a packet to a new type
+	/**Convert a packet to a new type.  Returns null if the type isn't found.
 	 * 
 	 * @param packet The packet to convert
 	 * @param typeID The typeID of the Type to convert to
@@ -254,5 +258,10 @@ public class TypeGroup<B>
 	 */
 	public final Type<B> getBase() {
 		return baseType;
+	}
+
+	@Override
+	public final String toString() {
+		return this.getGroup();
 	}
 }

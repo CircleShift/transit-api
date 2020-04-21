@@ -3,6 +3,10 @@ package net.corechg.transit.network.system.swap;
 import net.corechg.transit.network.packet.IStaticPacket;
 import net.corechg.transit.network.system.INode;
 
+/**
+ * @author Kyle Gunger
+ * @apiNote A node which can accept packets of specific types
+ */
 public interface IAcceptorNode extends INode
 {
 	
@@ -26,7 +30,7 @@ public interface IAcceptorNode extends INode
 	/**
 	 * @return Node[]
 	 */
-	public INode[] getProviders();
+	public IProviderNode[] getProviders();
 	
 	
 	/** Accept a packet from a provider

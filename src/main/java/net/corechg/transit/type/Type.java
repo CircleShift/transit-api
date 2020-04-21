@@ -5,12 +5,12 @@ import net.corechg.transit.network.packet.StaticPacket;
 
 /**@author Kyle Gunger
  * 
- * @param <T> The type of object transfered by packets of this type
+ * @param T The type of object transfered by packets of this type
  */
 public class Type<T>
 {
-	protected String typeID;
-	protected String groupID;
+	protected final String typeID;
+	protected final String groupID;
 	
 	public Type(String tID, String gID)
 	{
@@ -23,7 +23,7 @@ public class Type<T>
 	 * 
 	 * @param packet The packet (of this type)
 	 * @param group The group asking for the conversion
-	 * @return <T> The packet's data in the default type
+	 * @return The packet's data in the default type
 	 */
 	public T toBase(IStaticPacket<T> packet, String group)
 	{
@@ -35,7 +35,7 @@ public class Type<T>
 	 * 
 	 * @param base The base data
 	 * @param group The group that the data comes from
-	 * @return IPacket<<T>> The packet
+	 * @return IStaticPacket The packet
 	 */
 	public IStaticPacket<T> fromBase(T base, String group)
 	{
@@ -58,5 +58,10 @@ public class Type<T>
 	public final String getGroup()
 	{
 		return groupID;
+	}
+
+	@Override
+	public final String toString() {
+		return groupID + ":" + typeID;
 	}
 }

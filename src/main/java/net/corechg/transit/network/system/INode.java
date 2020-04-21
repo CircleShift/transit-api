@@ -2,16 +2,17 @@ package net.corechg.transit.network.system;
 
 /**
  * @author Kyle Gunger
- * @apiNote A node inside or outside a system. Provides acceptors and providers to other nodes.
+ * @apiNote A node inside or outside a system.
  */
 public interface INode
 {
 	
-	/**Returns the groupIDs of groups the node interacts with
+	/**Returns true if the group given is used by the node
 	 * 
-	 * @return String[]
+	 * @param groupID the group to querry
+	 * @return bool
 	 */
-	public String[] groupsProvided();
+	public boolean hasGroup(String groupID);
 	
 	
 	/**Get the system managing the node or {@code null} if there isn't one
@@ -35,11 +36,18 @@ public interface INode
 	 * @param groupID
 	 */
 	public void setData(Object dat, String groupID);
-	
-	
+
+
 	/** Get the nodes that this node is connected to
 	 * 
 	 * @return Node[]
 	 */
 	public INode[] getConnections();
+
+
+	/** Get the number of nodes that this node is connected to
+	 * 
+	 * @return int
+	 */
+	public int connectionCount();
 }

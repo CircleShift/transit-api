@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "transit-api",
-  "version": "0.10.3",
+  "version": "0.11.1",
 
   "name": "Transit API",
   "description": "Move about!",
@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.corechg.transit.InitTransit"
+      "net.corechg.transit.Transit"
     ]
   },
 
