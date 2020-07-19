@@ -12,7 +12,7 @@ public class TFluid {
     /** Constructor
      * 
      * @param f Fluid stored (Water/Lava/etc.)
-     * @param ct Count of fluid (mB)
+     * @param mb Count of fluid (mB)
      */
     public TFluid(Fluid f, Number mb) {
         fluid = f;

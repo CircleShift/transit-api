@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "transit-api",
-  "version": "0.11.2",
+  "version": "0.11.3",
 
   "name": "Transit API",
   "description": "Move about!",
