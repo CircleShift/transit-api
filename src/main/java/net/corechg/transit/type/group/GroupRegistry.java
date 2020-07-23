@@ -30,20 +30,27 @@ public class GroupRegistry {
 		return true;
 	}
 	
-	public static final TypeGroup<?> groupByID(String groupID)
+	@SuppressWarnings("unchecked")
+	public static final <T> TypeGroup<T> groupByID(String groupID)
 	{
 		for(TypeGroup<?> g : GROUPS)
 		{
-			if(g.getGroup().equals(groupID)) return g;
+			if(g.getGroup().equals(groupID)){
+				try{
+					return (TypeGroup<T>) g;
+				}catch(ClassCastException e) {
+					return null;
+				}
+			}
 		}
 		
 		return null;
 		
 	}
 	
-	public static final Type<?> typeByIdentity(String groupID, String typeID)
+	public static final <T> Type<T> typeByIdentity(String groupID, String typeID)
 	{
-		return groupByID(groupID).getType(typeID);
+		return GroupRegistry.<T>groupByID(groupID).getType(typeID);
 	}
 	
 }
