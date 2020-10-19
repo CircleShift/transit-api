@@ -1,13 +1,9 @@
-# TransitAPI
-Transit is an attempt to provide simple uniform helpers for converting and transfering abstract types in Minecraft.
+# Fabric Example Mod
 
-Transit makes no assumptions about what you transfer or how you transfer it, It only provides basic types for those that need it, and a network based API for compatibility.
+## Setup
 
-## A note on convention
-When working with blocks, the convention is such:
-1. The BlockEntity will impliment the INode/IAcceptorNode/IProviderNode interfaces.
-2. The Placed block will ask the blocks around it to become a provider and or an acceptor, not the other way around.
-
+For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
 
 ## License
-This mod is available under the MIT licence going forward.
+
+This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
