@@ -10,4 +10,4 @@ When working with blocks, the convention is such:
 
 
 ## License
-This mod is available under the MIT licence going forward.
+This mod is available under the MIT licence.
