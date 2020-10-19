@@ -20,7 +20,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.corechg.transit.Transit"
+      "net.corechg.mc.transit.Transit"
     ]
   },
 
