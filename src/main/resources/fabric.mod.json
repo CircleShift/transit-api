@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
   "id": "transit-api",
-  "version": "0.14.0",
+  "version": "0.15.0",
 
   "name": "Transit API",
   "description": "Move things about!",
   "authors": [
-    "CCGKyle"
+    "CSKyle"
   ],
   "contact": {
-    "homepage": "https://github.corechg.net/",
-    "sources": "https://github.com/CoreChg/TransitAPI",
-    "issues": "https://github.com/CoreChg/TransitAPI/issues"
+    "homepage": "https://cshift.net/",
+    "sources": "https://github.com/CircleShift/TransitAPI",
+    "issues": "https://github.com/CircleShift/TransitAPI/issues"
   },
 
   "license": "MIT",
@@ -20,7 +20,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.corechg.transit.Transit"
+      "net.cshift.transit.Transit"
     ]
   },
 
