@@ -189,9 +189,10 @@ public class TypeGroup<B>
 	 * @param type
 	 * @return
 	 */
+	@Deprecated
 	protected IStaticPacket<B> convertPacketRaw(IStaticPacket<B> packet, Type<B> type)
 	{
-		return type.fromBase(packet.getType().toBase(packet, getGroup()), getGroup());
+		return type.packetFromBase(packet.getType().toBase(packet.getData()));
 	}
 
 	/**Convert a packet to a new type  Returns null if the type isn't in the group.
@@ -200,6 +201,7 @@ public class TypeGroup<B>
 	 * @param type The type to convert to
 	 * @return Packet
 	 */
+	@Deprecated
 	public IStaticPacket<B> convertPacket(IStaticPacket<B> packet, Type<B> type)
 	{
 		if(isInGroup(packet.getType()) && isInGroup(type))
@@ -217,6 +219,7 @@ public class TypeGroup<B>
 	 * @param typeID The typeID of the Type to convert to
 	 * @return Packet
 	 */
+	@Deprecated
 	public IStaticPacket<B> convertPacket(IStaticPacket<B> packet, String groupID, String typeID)
 	{
 		Type<B> toType = getType(groupID, typeID);
@@ -234,6 +237,7 @@ public class TypeGroup<B>
 	 * @param typeID The typeID of the Type to convert to
 	 * @return Packet
 	 */
+	@Deprecated
 	public IStaticPacket<B> convertPacket(IStaticPacket<B> packet, String typeID)
 	{
 		Type<B> toType = getType(typeID);

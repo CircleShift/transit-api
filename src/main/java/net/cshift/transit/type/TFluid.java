@@ -1,22 +1,23 @@
 package net.cshift.transit.type;
 
-import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.*;
 
 /** Units of fluid.
  * @author Kyle Gunger
  */
 public class TFluid {
     private Fluid fluid;
-    private Number millibuckets;
+    private Number mb;
 
-    /** Constructor
+    /** Constructor.
+     *  Since a bucket of fluid is the same as a block of a fluid, mb can be called millibuckets or milliblocks.
      * 
      * @param f Fluid stored (Water/Lava/etc.)
-     * @param mb Count of fluid (mB)
+     * @param mB Count of fluid (mB)
      */
-    public TFluid(Fluid f, Number mb) {
+    public TFluid(Fluid f, Number mB) {
         fluid = f;
-        millibuckets = mb;
+        mb = mB;
     }
 
     /** Get the fluid stored.
@@ -28,6 +29,6 @@ public class TFluid {
     /** Get the millibuckets stored.
      */
     public Number getMilliBuckets() {
-        return millibuckets;
+        return mb;
     }
 }

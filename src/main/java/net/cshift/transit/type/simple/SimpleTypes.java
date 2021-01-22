@@ -1,6 +1,5 @@
 package net.cshift.transit.type.simple;
 
-import net.minecraft.item.ItemStack;
 import net.cshift.transit.type.*;
 
 public final class SimpleTypes {
@@ -14,7 +13,7 @@ public final class SimpleTypes {
 
 	/** Transfers items in a itemstack.
 	 */
-	public static final Type<ItemStack> Item = new Type<ItemStack>("Item", "ITEM");
+	public static final Type<TItem> Item = new Type<TItem>("Item", "ITEM");
 
 	/** Transfers fluid. TFluid stores fluid and mB.
 	 */

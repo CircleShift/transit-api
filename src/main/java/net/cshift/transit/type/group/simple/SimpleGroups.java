@@ -1,8 +1,7 @@
 package net.cshift.transit.type.group.simple;
 
-import net.minecraft.item.ItemStack;
 import net.cshift.transit.type.group.*;
-import net.cshift.transit.type.simple.SimpleTypes;
+import net.cshift.transit.type.simple.*;
 import net.cshift.transit.type.*;
 
 public final class SimpleGroups {
@@ -16,7 +15,7 @@ public final class SimpleGroups {
 
 	/** Transfers items. Basic type is ItemStack.
 	 */
-	public static final TypeGroup<ItemStack> ITEM_GROUP = new TypeGroup<ItemStack>(SimpleTypes.Item);
+	public static final TypeGroup<TItem> ITEM_GROUP = new TypeGroup<TItem>(SimpleTypes.Item);
 
 	/** Transfers fluids.  Basic unit is TFluid.
 	 */
