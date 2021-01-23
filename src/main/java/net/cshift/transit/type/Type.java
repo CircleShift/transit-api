@@ -11,6 +11,7 @@ public class Type<T>
 	protected final String typeID;
 	protected final String groupID;
 	
+	// Should not override, but you can if you must
 	public Type(String tID, String gID)
 	{
 		typeID = tID;
@@ -129,7 +130,7 @@ public class Type<T>
 	 * @param data The data to convert
 	 * @return The data formatted in this type
 	 */
-	public T convertFrom(Type<T> from, String group, T data) {
+	public T convertFrom(Type<T> from, T data, String group) {
 		return this.fromBase(from.toBase(data, group), group);
 	}
 
@@ -140,7 +141,7 @@ public class Type<T>
 	 * @return The data formatted in this type
 	 */
 	public final T convertFrom(Type<T> from, T data) {
-		return convertFrom(from, from.groupID, data);
+		return convertFrom(from, data, from.groupID);
 	}
 
 	/** Convert a packet using another type to a packet using this type within the given group.
@@ -150,7 +151,7 @@ public class Type<T>
 	 * @return The new packet formatted in this type
 	 */
 	public final IStaticPacket<T> convertFrom(IStaticPacket<T> packet, String group) {
-		return new StaticPacket<T>(convertFrom(packet.getType(), group, packet.getData()), this);
+		return new StaticPacket<T>(convertFrom(packet.getType(), packet.getData(), group), this);
 	}
 
 	/** Convert a packet using another type to a packet using this type within the default group.
@@ -175,8 +176,8 @@ public class Type<T>
 	 * @param data The data to convert
 	 * @return The data formatted in this type
 	 */
-	public final T convertTo(Type<T> to, String group, T data) {
-		return to.convertFrom(this, group, data);
+	public final T convertTo(Type<T> to, T data, String group) {
+		return to.convertFrom(this, data, group);
 	}
 
 	/** Convert data from this type to another type in the default group.
@@ -186,7 +187,7 @@ public class Type<T>
 	 * @return The data formatted in this type
 	 */
 	public final T convertTo(Type<T> to, T data) {
-		return to.convertFrom(this, groupID, data);
+		return to.convertFrom(this, data, this.groupID);
 	}
 
 	/** Convert a packet using this type to a packet using another type within the given group.
@@ -205,7 +206,7 @@ public class Type<T>
 	 * @return The new packet formatted in this type
 	 */
 	public final IStaticPacket<T> convertTo(Type<T> to, IStaticPacket<T> packet) {
-		return to.convertFrom(packet, groupID);
+		return to.convertFrom(packet, this.groupID);
 	}
 
 
