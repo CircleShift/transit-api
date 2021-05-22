@@ -4,7 +4,7 @@ import net.cshift.transit.network.packet.*;
 
 /**@author Kyle Gunger
  * 
- * @param T The type of object transfered by packets of this type
+ * @param <T> The type of object transfered by packets of this type
  */
 public class Type<T>
 {

@@ -1,4 +1,4 @@
-package net.cshift.transit.network.packet.dynamic;
+package net.cshift.transit.network.packet;
 
 import net.cshift.transit.type.Type;
 

@@ -1,6 +1,4 @@
-package net.cshift.transit.network.packet.dynamic;
-
-import net.cshift.transit.network.packet.IStaticPacket;
+package net.cshift.transit.network.packet;
 
 /** Interface describing a fluid packet.
  * @author Kyle Gunger

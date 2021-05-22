@@ -2,7 +2,7 @@ package net.cshift.transit.type;
 
 import net.minecraft.item.*;
 
-/** Units of fluid.
+/** Item storage
  * @author Kyle Gunger
  */
 public class TItem {
@@ -10,23 +10,22 @@ public class TItem {
     private Number count;
 
     /** Constructor.
-     *  Since a bucket of fluid is the same as a block of a fluid, mb can be called millibuckets or milliblocks.
      * 
-     * @param i Fluid stored (Water/Lava/etc.)
-     * @param c Item countie
+     * @param i Item stored
+     * @param c Item count
      */
     public TItem(Item i, Number c) {
         item = i;
         count = c;
     }
 
-    /** Get the fluid stored.
+    /** Get the item stored.
      */
     public Item getItem() {
         return item;
     }
 
-    /** Get the millibuckets stored.
+    /** Get the item count.
      */
     public Number getCount() {
         return count;

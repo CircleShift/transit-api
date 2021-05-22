@@ -1,4 +1,4 @@
-package net.cshift.transit.network.system;
+package net.cshift.transit.network;
 
 
 /**

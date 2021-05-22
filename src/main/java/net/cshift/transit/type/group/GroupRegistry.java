@@ -30,7 +30,6 @@ public final class GroupRegistry {
 		return true;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static final <T> TypeGroup<T> groupByID(String groupID)
 	{
 		for(TypeGroup<?> g : GROUPS)
@@ -50,7 +49,12 @@ public final class GroupRegistry {
 	
 	public static final <T> Type<T> typeByIdentity(String groupID, String typeID)
 	{
-		return GroupRegistry.<T>groupByID(groupID).getType(typeID);
+		TypeGroup<T> group = GroupRegistry.<T>groupByID(groupID);
+		
+		if(group != null)
+			return group.getType(typeID);
+
+		return null;
 	}
 	
 }
