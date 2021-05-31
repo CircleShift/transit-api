@@ -8,12 +8,10 @@ import net.cshift.transit.network.packet.*;
  */
 public interface INode
 {
-	/** Returns true if the group given is used by the node
+	/** Returns a channel manifest for the INode
 	 *
-	 * @param group the group to query
-	 * @return {@code true} if the node supports the group
 	 */
-	public boolean hasGroup(String group);
+	public PoolManifest getManifest();
 
 	/** Get the system managing the node or {@code null} if there isn't one
 	 *
@@ -34,7 +32,7 @@ public interface INode
 	 * @param asker The asking node
 	 * @return A channel if the node accepts the request, {@code null} otherwise
 	 */
-	public <T> Channel<T> connect(String group, INode asker);
+	public <T> Channel<T> connect(int poolID, INode asker);
 
 	/** Accept a packet from a channel (or not).
 	 * 
@@ -58,7 +56,7 @@ public interface INode
 	 * 
 	 * @apiNote Do not call this function, use Channel.rate() instead.
 	 * @param channel The channel asking for the transfer rate
-	 * @return A Number representing the transfer rate from the channel (in base group units).
+	 * @return A Number representing the transfer rate from the channel (in base group units per tick).
 	 */
 	public <T> Number getRate(Channel<T> channel);
 

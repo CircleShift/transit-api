@@ -7,7 +7,7 @@ import net.cshift.transit.network.packet.IStaticPacket;
  * @apiNote A channel represents a connection between two nodes.  It is able to send data in packets, and serves as a way to organize incoming traffic.
  * @param <D> The type of data the packets will be transfering
  */
-public class Channel<D> {
+public final class Channel<D> {
     private INode to;
     private int id;
     private String group;
@@ -16,7 +16,7 @@ public class Channel<D> {
      * Negative IDs indicate a terminated connection, so do not initialize the class with a negative ID.
      * 
      * @param node The recieving node
-     * @param id The channel's id, as assigned by the recieving node.
+     * @param id The channel's id, as assigned by the recieving node.  In most cases, this will match the pool ID as a way to match channels to pools.
      * @param group 
      */
 	public Channel(INode node, int id, String group)
@@ -75,6 +75,7 @@ public class Channel<D> {
 
     /** Pressure
 	 *
+     * @apiNote This part of the api is not properly documented yet, and it's use is not reccommended for cross-mod communications.
 	 * @return A Number representing the pressure from the channel (in base group units).
 	 */
 	public Number pressure()
@@ -84,7 +85,7 @@ public class Channel<D> {
 
 	/** Max transfer rate
 	 * 
-	 * @return A Number representing the max transfer rate from the channel (in base group units).
+	 * @return A Number representing the max transfer rate from the channel (in base group units per tick).
 	 */
 	public Number rate()
     {

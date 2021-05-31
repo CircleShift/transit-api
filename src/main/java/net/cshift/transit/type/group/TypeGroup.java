@@ -204,12 +204,7 @@ public class TypeGroup<B>
 	@Deprecated
 	public IStaticPacket<B> convertPacket(IStaticPacket<B> packet, Type<B> type)
 	{
-		if(isInGroup(packet.getType()) && isInGroup(type))
-		{
-			return convertPacketRaw(packet, type);
-		}
-
-		return null;
+		return type.convertFrom(packet, this.getGroup());
 	}
 
 	/**Convert a packet to a new type  Returns null if the type isn't found.
@@ -225,7 +220,7 @@ public class TypeGroup<B>
 		Type<B> toType = getType(groupID, typeID);
 		if(toType != null)
 		{
-			return convertPacketRaw(packet, toType);
+			return toType.convertFrom(packet, this.getGroup());
 		}
 
 		return null;
@@ -243,7 +238,7 @@ public class TypeGroup<B>
 		Type<B> toType = getType(typeID);
 		if(toType != null)
 		{
-			return convertPacketRaw(packet, toType);
+			return toType.convertFrom(packet, this.getGroup());
 		}
 
 		return null;
