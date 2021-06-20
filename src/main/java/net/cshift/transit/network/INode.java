@@ -8,14 +8,13 @@ import net.cshift.transit.network.packet.*;
  */
 public interface INode
 {
-	/** Returns a channel manifest for the INode
+	/** Returns a pool manifest for the INode
 	 *
 	 */
 	public PoolManifest getManifest();
 
 	/** Get the system managing the node or {@code null} if there isn't one
 	 *
-	 * @return System
 	 */
 	public ISystem getSystem();
 
@@ -28,7 +27,7 @@ public interface INode
 	/** Call this function to establish a connection with a node.
 	 * 
 	 * @param <T> The type of connection being asked for
-	 * @param group The group of connection being asked for
+	 * @param poolID The ID of the pool the channel will interface with (see PoolManifest)
 	 * @param asker The asking node
 	 * @return A channel if the node accepts the request, {@code null} otherwise
 	 */
@@ -40,9 +39,9 @@ public interface INode
 	 * @param <T> The type of the packet and channel
 	 * @param packet The packet to be vetted
 	 * @param channel The channel which the packet is coming through
-	 * @return true if the node accepts the packet
+	 * @return The overflow data if the packet is only partially accepted. {@code null} otherwise.
 	 */
-	public <T> boolean accept(IStaticPacket<T> packet, Channel<T> channel);
+	public <T> IStaticPacket<T> accept(IStaticPacket<T> packet, Channel<T> channel);
 
 	/** Pressure
 	 *

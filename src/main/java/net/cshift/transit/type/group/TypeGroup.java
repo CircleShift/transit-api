@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.cshift.transit.network.packet.*;
 import net.cshift.transit.type.Type;
 
 /**
  * @author Kyle Gunger
  * @param <B> The base object which all grouped Types should convert between.
  */
-public class TypeGroup<B>
+public final class TypeGroup<B>
 {
 	// The base Type (provides the group's identifier)
 	private Type<B> baseType;
@@ -181,68 +180,7 @@ public class TypeGroup<B>
 	}
 
 
-	//  Type conversion
-
-	/** Actually convert the packet
-	 *
-	 * @param packet
-	 * @param type
-	 * @return
-	 */
-	@Deprecated
-	protected IStaticPacket<B> convertPacketRaw(IStaticPacket<B> packet, Type<B> type)
-	{
-		return type.packetFromBase(packet.getType().toBase(packet.getData()));
-	}
-
-	/**Convert a packet to a new type  Returns null if the type isn't in the group.
-	 *
-	 * @param packet The packet to convert
-	 * @param type The type to convert to
-	 * @return Packet
-	 */
-	@Deprecated
-	public IStaticPacket<B> convertPacket(IStaticPacket<B> packet, Type<B> type)
-	{
-		return type.convertFrom(packet, this.getGroup());
-	}
-
-	/**Convert a packet to a new type  Returns null if the type isn't found.
-	 *
-	 * @param packet The packet to convert
-	 * @param groupID The groupID of the Type to convert to
-	 * @param typeID The typeID of the Type to convert to
-	 * @return Packet
-	 */
-	@Deprecated
-	public IStaticPacket<B> convertPacket(IStaticPacket<B> packet, String groupID, String typeID)
-	{
-		Type<B> toType = getType(groupID, typeID);
-		if(toType != null)
-		{
-			return toType.convertFrom(packet, this.getGroup());
-		}
-
-		return null;
-	}
-
-	/**Convert a packet to a new type.  Returns null if the type isn't found.
-	 *
-	 * @param packet The packet to convert
-	 * @param typeID The typeID of the Type to convert to
-	 * @return Packet
-	 */
-	@Deprecated
-	public IStaticPacket<B> convertPacket(IStaticPacket<B> packet, String typeID)
-	{
-		Type<B> toType = getType(typeID);
-		if(toType != null)
-		{
-			return toType.convertFrom(packet, this.getGroup());
-		}
-
-		return null;
-	}
+	// DO ALL TYPE CONVERSION USING TYPES.
 
 	/** The group identifier.  Given by the Base Group
 	 * @return String

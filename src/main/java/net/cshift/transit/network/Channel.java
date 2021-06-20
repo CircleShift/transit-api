@@ -109,12 +109,10 @@ public final class Channel<D> {
     /** Send a packet to the recieving node
      * 
      * @param packet the packet to send
-     * @return {@code true} if the recieving node accepts the packet
+     * @return The overflow data if the packet is only partially accepted. {@code null} otherwise.
      */
-    public boolean send(IStaticPacket<D> packet)
+    public IStaticPacket<D> send(IStaticPacket<D> packet)
     {
-        if(!this.isTerminated())
-            return to.accept(packet, this);
-        return false;
+        return to.accept(packet, this);
     }
 }
