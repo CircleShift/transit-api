@@ -1,6 +1,6 @@
-package net.cshift.transit.type;
+package net.cshift.api.transit.type;
 
-import net.cshift.transit.network.packet.*;
+import net.cshift.api.transit.network.packet.*;
 
 /**@author Kyle Gunger
  * 

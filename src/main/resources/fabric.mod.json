@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "transit-api",
-  "version": "2.0.0",
+  "version": "3.0.0-alpha",
 
   "name": "Transit API",
   "description": "Move things about!",
@@ -9,7 +9,7 @@
     "CSKyle"
   ],
   "contact": {
-    "homepage": "https://cshift.net/",
+    "homepage": "https://cshift.net/TransitAPI",
     "sources": "https://github.com/CircleShift/TransitAPI",
     "issues": "https://github.com/CircleShift/TransitAPI/issues"
   },
@@ -20,12 +20,12 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.cshift.transit.Transit"
+      "net.cshift.api.transit.Transit"
     ]
   },
 
   "depends": {
-    "fabricloader": ">=0.7.4",
-    "minecraft": "1.17.x"
+    "fabricloader": ">=0.14.0",
+    "minecraft": "1.20.x"
   }
 }

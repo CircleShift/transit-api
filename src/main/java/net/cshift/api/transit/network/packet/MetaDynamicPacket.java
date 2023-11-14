@@ -1,6 +1,6 @@
-package net.cshift.transit.network.packet;
+package net.cshift.api.transit.network.packet;
 
-import net.cshift.transit.type.Type;
+import net.cshift.api.transit.type.Type;
 
 /** Static packet with extra data attached.
  * @author Kyle Gunger

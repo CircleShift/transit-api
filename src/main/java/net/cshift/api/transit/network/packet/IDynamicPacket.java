@@ -1,4 +1,4 @@
-package net.cshift.transit.network.packet;
+package net.cshift.api.transit.network.packet;
 
 /** Interface describing a fluid packet.
  * @author Kyle Gunger

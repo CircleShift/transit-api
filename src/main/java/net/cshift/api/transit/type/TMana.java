@@ -1,4 +1,4 @@
-package net.cshift.transit.type;
+package net.cshift.api.transit.type;
 
 /** Units of mana.
  * @author Kyle Gunger

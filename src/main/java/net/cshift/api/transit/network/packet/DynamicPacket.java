@@ -1,23 +1,24 @@
-package net.cshift.transit.network.packet;
+package net.cshift.api.transit.network.packet;
 
-import net.cshift.transit.type.*;
+import net.cshift.api.transit.type.Type;
 
-/** Simple packet which stores an unchanging value.
+/**
+ * Simple packet which stores a fluid value.
+ *
  * @author Kyle Gunger
  *
- * @param <D> The data type (Object) that the packet transfers.
+ * @param <D> The data type (Object) that the packet transfers
  */
-public class StaticPacket<D> implements IStaticPacket<D>
-{
+public class DynamicPacket<D> implements IDynamicPacket<D> {
     private D data;
     private Type<D> type;
 
     /** Constructor. Stores the given data and uses the given type.
-     * 
+     *
      * @param dat The packet's data
      * @param t The packet's type
      */
-    public StaticPacket(D dat, Type<D> t)
+    public DynamicPacket(D dat, Type<D> t)
     {
         data = dat;
         type = t;
@@ -27,6 +28,12 @@ public class StaticPacket<D> implements IStaticPacket<D>
     public D getData()
     {
         return data;
+    }
+
+    @Override
+    public void setData(D dat)
+    {
+        data = dat;
     }
 
 	@Override

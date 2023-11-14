@@ -1,6 +1,6 @@
-package net.cshift.transit.network.packet;
+package net.cshift.api.transit.network.packet;
 
-import net.cshift.transit.type.*;
+import net.cshift.api.transit.type.*;
 
 /** Interface describing an unchanging packet.
  * @author Kyle Gunger
