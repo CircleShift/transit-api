@@ -26,10 +26,9 @@ package net.cshift.api.transit;
 
 import net.fabricmc.api.ModInitializer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 
-import net.cshift.api.transit.type.group.SimpleGroups;
+import net.cshift.api.transit.type.group.*;
 
 /**
  * @author Kyle Gunger
@@ -38,7 +37,7 @@ import net.cshift.api.transit.type.group.SimpleGroups;
 public class Transit implements ModInitializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger("Transit API");
-	
+
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Transit API: Providing a thin wrapper over reality!");

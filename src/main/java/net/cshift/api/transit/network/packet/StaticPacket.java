@@ -9,7 +9,7 @@ import net.cshift.api.transit.type.*;
  */
 public class StaticPacket<D> implements IStaticPacket<D>
 {
-    private D data;
+    private Object data;
     private Type<D> type;
 
     /** Constructor. Stores the given data and uses the given type.
@@ -17,14 +17,14 @@ public class StaticPacket<D> implements IStaticPacket<D>
      * @param dat The packet's data
      * @param t The packet's type
      */
-    public StaticPacket(D dat, Type<D> t)
+    public StaticPacket(Object dat, Type<D> t)
     {
         data = dat;
         type = t;
     }
 
     @Override
-    public D getData()
+    public Object getData()
     {
         return data;
     }

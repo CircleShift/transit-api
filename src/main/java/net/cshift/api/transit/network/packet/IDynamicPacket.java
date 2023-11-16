@@ -1,14 +1,11 @@
 package net.cshift.api.transit.network.packet;
 
-/** Interface describing a fluid packet.
+/** Interface describing a packet where the data can change as it's transferred.
+ * 
+ * @param <D> The type parameter of the Type being transported
  * @author Kyle Gunger
- *
- * @param <D> The data type (Object) that the packet transfers
  */
 public interface IDynamicPacket<D> extends IStaticPacket<D>{
-    /**Set the packet's data.
-	 *
-	 * @return <D> The packet's data
-	 */
-    public void setData(D dat);
+    /** Set the packet's data. */
+    public void setData(Object dat);
 }

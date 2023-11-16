@@ -25,6 +25,8 @@
 package net.cshift.api.transit.network;
 
 import net.cshift.api.transit.network.packet.IStaticPacket;
+import net.cshift.api.transit.type.group.GroupRegistry;
+import net.cshift.api.transit.type.group.TypeGroup;
 
 /**
  * @author Kyle Gunger
@@ -35,6 +37,7 @@ public final class Channel<D> {
     private INode to;
     private int id;
     private String group;
+    private Class<D> baseClass;
 
     /** This constructor should be called by a node approving a connection.  The approving node can give the connection an ID and group.
      * Negative IDs indicate a terminated connection, so do not initialize the class with a negative ID.
@@ -43,11 +46,12 @@ public final class Channel<D> {
      * @param id The channel's id, as assigned by the recieving node.  In most cases, this will match the pool ID as a way to match channels to pools.
      * @param group 
      */
-	public Channel(INode node, int id, String group)
+	public Channel(INode node, int id, String group, Class<D> baseClass)
 	{
         to = node;
         this.id = id;
         this.group = group;
+        this.baseClass = baseClass;
 	}
 
 
@@ -78,8 +82,8 @@ public final class Channel<D> {
      * 
      * @return
      */
-    public String getGroup() {
-        return group;
+    public TypeGroup<D> getGroup() {
+        return GroupRegistry.<D>groupByID(group, baseClass);
     }
 
     /** Returns true if the connection has been terminated
@@ -135,7 +139,7 @@ public final class Channel<D> {
      * @param packet the packet to send
      * @return The overflow data if the packet is only partially accepted. {@code null} otherwise.
      */
-    public IStaticPacket<D> send(IStaticPacket<D> packet)
+    public IStaticPacket send(IStaticPacket packet)
     {
         return to.accept(packet, this);
     }

@@ -27,17 +27,17 @@ package net.cshift.api.transit.type;
 public final class SimpleTypes {
 	/** Transfers energy.  Energy is stored as a numeric.
 	 */
-	public static final Type<Long> TransitJoule = new Type<Long>("Joule", "ENERGY");
+	public static final Type<Long> TransitJoule = new Type<Long>("Joule", "ENERGY", Long.class);
 	
 	/** Transfers mana.  TMana stores mana count and type.
 	 */
-	public static final Type<TMana> TransitMana = new Type<TMana>("TMana", "MANA");
+	public static final Type<TMana> TransitMana = new Type<TMana>("TMana", "MANA", TMana.class);
 
 	/** Transfers items. TItem stores an item and an item count.
 	 */
-	public static final Type<TItem> TransitItem = new Type<TItem>("TItem", "ITEM");
+	public static final Type<TItem> TransitItem = new Type<TItem>("TItem", "ITEM", TItem.class);
 
 	/** Transfers fluid. TFluid stores fluid and mB.
 	 */
-	public static final Type<TFluid> TransitFluid = new Type<TFluid>("TFluid", "FLUID");
+	public static final Type<TFluid> TransitFluid = new Type<TFluid>("TFluid", "FLUID", TFluid.class);
 }

@@ -3,14 +3,14 @@ package net.cshift.api.transit.network.packet;
 import net.cshift.api.transit.type.Type;
 
 /**
- * Simple packet which stores a fluid value.
+ * Simple packet which stores a value which can change.
  *
+ * @param <D> The type parameter of the Type being transported
  * @author Kyle Gunger
- *
- * @param <D> The data type (Object) that the packet transfers
+ * 
  */
 public class DynamicPacket<D> implements IDynamicPacket<D> {
-    private D data;
+    private Object data;
     private Type<D> type;
 
     /** Constructor. Stores the given data and uses the given type.
@@ -18,20 +18,20 @@ public class DynamicPacket<D> implements IDynamicPacket<D> {
      * @param dat The packet's data
      * @param t The packet's type
      */
-    public DynamicPacket(D dat, Type<D> t)
+    public DynamicPacket(Object dat, Type<D> t)
     {
         data = dat;
         type = t;
     }
 
     @Override
-    public D getData()
+    public Object getData()
     {
         return data;
     }
 
     @Override
-    public void setData(D dat)
+    public void setData(Object dat)
     {
         data = dat;
     }

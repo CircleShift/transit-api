@@ -31,19 +31,19 @@ import net.cshift.api.transit.type.*;
 public final class SimpleGroups {
 	/** Transfers energy.  Basic unit is TJoule (Transit Joule).
 	 */
-	public static final TypeGroup<Long> ENERGY = new TypeGroup<Long>(SimpleTypes.TransitJoule);
+	public static final TypeGroup<Long> ENERGY = new TypeGroup<Long>(SimpleTypes.TransitJoule, Long.class);
 
 	/** Transfers mana.  Basic unit is TMana (Transit Mana).
 	 */
-	public static final TypeGroup<TMana> MANA = new TypeGroup<TMana>(SimpleTypes.TransitMana);
+	public static final TypeGroup<TMana> MANA = new TypeGroup<TMana>(SimpleTypes.TransitMana, TMana.class);
 
 	/** Transfers items. Basic unit is TItem.
 	 */
-	public static final TypeGroup<TItem> ITEM = new TypeGroup<TItem>(SimpleTypes.TransitItem);
+	public static final TypeGroup<TItem> ITEM = new TypeGroup<TItem>(SimpleTypes.TransitItem, TItem.class);
 
 	/** Transfers fluids.  Basic unit is TFluid.
 	 */
-	public static final TypeGroup<TFluid> FLUID = new TypeGroup<TFluid>(SimpleTypes.TransitFluid);
+	public static final TypeGroup<TFluid> FLUID = new TypeGroup<TFluid>(SimpleTypes.TransitFluid, TFluid.class);
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger("Transit API/Simple Groups");
 	

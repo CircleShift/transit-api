@@ -25,7 +25,6 @@
 package net.cshift.api.transit.type.group;
 
 import java.security.InvalidKeyException;
-import java.sql.Types;
 import java.util.HashMap;
 
 import org.slf4j.*;
@@ -38,6 +37,9 @@ import net.cshift.api.transit.type.Type;
  */
 public final class TypeGroup<B>
 {
+	// The basic class of the base type which is being transferred
+	private Class<B> baseClass;
+	
 	// The base Type (provides the group's identifier)
 	private Type<B> baseType;
 
@@ -48,10 +50,11 @@ public final class TypeGroup<B>
 	private static final Logger LOGGER = LoggerFactory.getLogger("Transit API/Type Group");
 
 
-	public TypeGroup(Type<B> base)
+	public TypeGroup(Type<B> base, Class<B> baseClass)
 	{
 		TYPES = new HashMap<String, Type<B>>();
 		baseType = base;
+		this.baseClass = baseClass;
 		addType(base);
 	}
 
@@ -207,10 +210,17 @@ public final class TypeGroup<B>
 	}
 
 	/** The base group type
-	 * 	@return Type
+	 * 	@return Type<B>
 	 */
 	public final Type<B> getBase() {
 		return baseType;
+	}
+	
+	/** A Class object which represents the type that the base type uses to transfer data
+	 * @return Class<B>
+	 */
+	public final Class<B> getBaseClass() {
+		return baseClass;
 	}
 
 	@Override

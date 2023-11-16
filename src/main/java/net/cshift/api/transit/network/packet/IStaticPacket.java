@@ -3,21 +3,21 @@ package net.cshift.api.transit.network.packet;
 import net.cshift.api.transit.type.*;
 
 /** Interface describing an unchanging packet.
- * @author Kyle Gunger
  *
- * @param <D> The data type (Object) that the packet transfers.
+ * @param <D> The type parameter of the Type being transported
+ * @author Kyle Gunger
  */
 public interface IStaticPacket<D>
 {
 	/**Get the packet's data.
 	 * 
-	 * @return <D> The packet's data
+	 * @return The packet's data
 	 */
-    public D getData();
+    public Object getData();
     
     /**Get the packet's type.
      * 
-     * @return IType<<D>> The type of the packet
+     * @return IType<?> The type of the packet
      */
     public Type<D> getType();
 }
