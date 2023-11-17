@@ -45,7 +45,7 @@ public interface INode
 	 * @param channel The channel which the packet is coming through
 	 * @return The overflow data if the packet is only partially accepted. {@code null} otherwise.
 	 */
-	public IStaticPacket accept(IStaticPacket packet, Channel<?> channel);
+	public <T> IStaticPacket<T> accept(IStaticPacket<T> packet, Channel<T> channel);
 
 	/** Pressure
 	 *

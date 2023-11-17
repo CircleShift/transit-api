@@ -139,8 +139,8 @@ public final class Channel<D> {
      * @param packet the packet to send
      * @return The overflow data if the packet is only partially accepted. {@code null} otherwise.
      */
-    public IStaticPacket send(IStaticPacket packet)
+    public IStaticPacket<D> send(IStaticPacket<D> packet)
     {
-        return to.accept(packet, this);
+        return to.<D>accept(packet, this);
     }
 }
