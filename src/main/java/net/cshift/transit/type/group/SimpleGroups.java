@@ -22,22 +22,37 @@
 	SOFTWARE.
 */
 
-package net.cshift.api.transit.type;
+package net.cshift.transit.type.group;
 
-public final class SimpleTypes {
-	/** Transfers energy.  Energy is stored as a numeric.
+import org.slf4j.*;
+
+import net.cshift.transit.type.*;
+
+public final class SimpleGroups {
+	/** Transfers energy.  Basic unit is TJoule (Transit Joule).
 	 */
-	public static final Type<Long> TransitJoule = new Type<Long>("Joule", "ENERGY", Long.class);
+	public static final TypeGroup<Long> ENERGY = new TypeGroup<Long>(SimpleTypes.TransitJoule, Long.class);
+
+	/** Transfers mana.  Basic unit is TMana (Transit Mana).
+	 */
+	public static final TypeGroup<TMana> MANA = new TypeGroup<TMana>(SimpleTypes.TransitMana, TMana.class);
+
+	/** Transfers items. Basic unit is TItem.
+	 */
+	public static final TypeGroup<TItem> ITEM = new TypeGroup<TItem>(SimpleTypes.TransitItem, TItem.class);
+
+	/** Transfers fluids.  Basic unit is TFluid.
+	 */
+	public static final TypeGroup<TFluid> FLUID = new TypeGroup<TFluid>(SimpleTypes.TransitFluid, TFluid.class);
 	
-	/** Transfers mana.  TMana stores mana count and type.
-	 */
-	public static final Type<TMana> TransitMana = new Type<TMana>("TMana", "MANA", TMana.class);
-
-	/** Transfers items. TItem stores an item and an item count.
-	 */
-	public static final Type<TItem> TransitItem = new Type<TItem>("TItem", "ITEM", TItem.class);
-
-	/** Transfers fluid. TFluid stores fluid and mB.
-	 */
-	public static final Type<TFluid> TransitFluid = new Type<TFluid>("TFluid", "FLUID", TFluid.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger("Transit API/Simple Groups");
+	
+	public static final void init()
+	{
+		LOGGER.info("Initializing simple groups");
+		GroupRegistry.addGroup(ENERGY);
+		GroupRegistry.addGroup(MANA);
+		GroupRegistry.addGroup(ITEM);
+		GroupRegistry.addGroup(FLUID);
+	}
 }

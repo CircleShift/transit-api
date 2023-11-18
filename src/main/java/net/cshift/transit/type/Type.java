@@ -22,9 +22,9 @@
 	SOFTWARE.
 */
 
-package net.cshift.api.transit.type;
+package net.cshift.transit.type;
 
-import net.cshift.api.transit.network.packet.*;
+import net.cshift.transit.network.packet.*;
 
 /**@author Kyle Gunger
  * 

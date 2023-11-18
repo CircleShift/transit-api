@@ -1,4 +1,4 @@
-package net.cshift.api.transit.type;
+package net.cshift.transit.type;
 
 import net.minecraft.fluid.*;
 

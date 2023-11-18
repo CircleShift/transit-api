@@ -22,14 +22,14 @@
 	SOFTWARE.
 */
 
-package net.cshift.api.transit.type.group;
+package net.cshift.transit.type.group;
 
 import java.security.InvalidKeyException;
 import java.util.HashMap;
 
 import org.slf4j.*;
 
-import net.cshift.api.transit.type.Type;
+import net.cshift.transit.type.Type;
 
 /**
  * @author Kyle Gunger

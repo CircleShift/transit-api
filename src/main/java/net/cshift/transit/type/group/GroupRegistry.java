@@ -22,14 +22,14 @@
 	SOFTWARE.
 */
 
-package net.cshift.api.transit.type.group;
+package net.cshift.transit.type.group;
 
 import java.security.InvalidKeyException;
 import java.util.HashMap;
 
 import org.slf4j.*;
 
-import net.cshift.api.transit.type.Type;
+import net.cshift.transit.type.Type;
 
 public final class GroupRegistry {
 	private static final HashMap<String, TypeGroup<?>> GROUPS = new HashMap<String, TypeGroup<?>>();

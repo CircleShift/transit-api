@@ -22,36 +22,26 @@
 	SOFTWARE.
 */
 
-package net.cshift.api.transit.type;
+package net.cshift.transit;
 
-import net.minecraft.item.*;
+import net.fabricmc.api.ModInitializer;
 
-/** Item storage
+import org.slf4j.*;
+
+import net.cshift.transit.type.group.*;
+
+/**
  * @author Kyle Gunger
+ * @apiNote This is the main entry point for Transit.  The api is mostly intended for use on server-side connections.
  */
-public class TItem {
-    private Item item;
-    private Number count;
+public class Transit implements ModInitializer {
 
-    /** Constructor.
-     * 
-     * @param i Item stored
-     * @param c Item count
-     */
-    public TItem(Item i, Number c) {
-        item = i;
-        count = c;
-    }
+	private static final Logger LOGGER = LoggerFactory.getLogger("Transit API");
 
-    /** Get the item stored.
-     */
-    public Item getItem() {
-        return item;
-    }
+	@Override
+	public void onInitialize() {
+		LOGGER.info("Transit API: Providing a thin wrapper over reality!");
+		SimpleGroups.init();
+	}
 
-    /** Get the item count.
-     */
-    public Number getCount() {
-        return count;
-    }
 }

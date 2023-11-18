@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "transit-api",
-  "version": "3.0.0-alpha-2",
+  "version": "3.0.0-rc-1",
 
   "name": "Transit API",
   "description": "Move things about!",
@@ -9,9 +9,9 @@
     "CSKyle"
   ],
   "contact": {
-    "homepage": "https://cshift.net/TransitAPI",
-    "sources": "https://github.com/CircleShift/TransitAPI",
-    "issues": "https://github.com/CircleShift/TransitAPI/issues"
+    "homepage": "https://git.cshift.net/CircleShift/TransitAPI",
+    "sources": "https://git.cshift.net/CircleShift/TransitAPI",
+    "issues": "https://git.cshift.net/CircleShift/TransitAPI/issues"
   },
 
   "license": "MIT",
@@ -20,7 +20,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.cshift.api.transit.Transit"
+      "net.cshift.transit.Transit"
     ]
   },
 

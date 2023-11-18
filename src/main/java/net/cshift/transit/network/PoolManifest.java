@@ -1,4 +1,4 @@
-package net.cshift.api.transit.network;
+package net.cshift.transit.network;
 
 /**
  * @author Kyle Gunger

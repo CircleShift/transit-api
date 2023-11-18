@@ -31,3 +31,7 @@ bin/
 # fabric
 
 run/
+
+# secret keys
+keys.gradle
+

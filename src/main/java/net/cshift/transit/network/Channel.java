@@ -22,11 +22,11 @@
 	SOFTWARE.
 */
 
-package net.cshift.api.transit.network;
+package net.cshift.transit.network;
 
-import net.cshift.api.transit.network.packet.IStaticPacket;
-import net.cshift.api.transit.type.group.GroupRegistry;
-import net.cshift.api.transit.type.group.TypeGroup;
+import net.cshift.transit.network.packet.IStaticPacket;
+import net.cshift.transit.type.group.GroupRegistry;
+import net.cshift.transit.type.group.TypeGroup;
 
 /**
  * @author Kyle Gunger

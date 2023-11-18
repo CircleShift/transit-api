@@ -1,4 +1,4 @@
-package net.cshift.api.transit.network.packet;
+package net.cshift.transit.network.packet;
 
 /** Interface describing a packet where the data can change as it's transferred.
  * 
